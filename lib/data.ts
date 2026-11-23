@@ -78,22 +78,22 @@ export const products: Product[] = [
 
 export const materials: Material[] = [
   {
-    name: "Pamuk Makrome İpi",
-    summary: "Tok duruş, belirgin örgü dokusu ve günlük kullanım için dengeli esneklik.",
+    name: "Hasır ip",
+    summary: "Koleksiyondaki modellerin ana malzemesi. Hafif, tok duran ve örgü dokusunu net gösteren bir ip.",
     details:
-      "Çantanın formunu korumasına yardımcı olurken elde örülen ilmeklerin dokusunu net gösterir. Yaz aylarında hafif ve nefes alan bir his verir."
+      "Hasır ip, çantanın formunu boşken de korumasına yardımcı olur ve ilmeklerin dokusunu belirgin kılar. Açık dokulu (ajurlu) örülen modellerde ışığı geçirir; bu modellerde küçük eşyaları bir kese ya da cüzdan içinde taşımak pratik olur. Her modelin lif içeriğini ve bakım notunu ürün sayfasında ayrıca belirtiyorum."
   },
   {
-    name: "Deri ve Pirinç Detaylar",
-    summary: "Sade kroşe yüzeyi küçük ama kalıcı aksesuarlarla tamamlar.",
+    name: "Askılar ve kapamalar",
+    summary: "Çoğu modelde askı gövdeyle aynı iple örülür; bazı modellerde metal zincir askı kullanılır.",
     details:
-      "Askı, kapama ve bağlantı noktalarında kullanılan detaylar çantanın kullanım ömrünü ve şehirli görünümünü güçlendirir."
+      "Askı boyu çantanın omuzda nereye oturacağını belirler; ürün sayfasında kısa, uzun ya da zincir askı olarak yazılır. Kapamalar çoğunlukla çıtçıt; büzgülü modellerde kordon ve ahşap boncuk kullanılır. Metal parçaları nemden uzak tutmak parlaklığını korur."
   },
   {
-    name: "Pamuk Astar",
-    summary: "Mini ve açık formlu modellerde iç kullanım rahatlığı sağlar.",
+    name: "Örgü detayları",
+    summary: "Çiçek motifleri, püsküller ve renkli kenar sıraları da aynı iple, elde örülür.",
     details:
-      "Astar, küçük eşyaların örgü aralarından görünmesini azaltır ve çantanın iç yüzeyini daha düzenli hale getirir."
+      "Dekoratif parçalar çantaya sonradan dikilir ya da örgü sırasında gövdeye katılır. Çekiştirmeden, çantayı boşken düz bir yüzeyde saklamak bu detayların formunu korur. Takılma ya da sökülme olursa onarım için bana yazabilirsiniz."
   }
 ];
 

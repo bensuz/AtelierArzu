@@ -3,6 +3,7 @@ import { products } from "@/lib/data";
 import editorialPosts from "@/lib/editorial-posts.json";
 import { formatTryPrice, parseTryPrice } from "@/lib/price";
 import { policyPages } from "@/lib/policies";
+import { applyReviewedCopy } from "@/lib/product-copy";
 import type { BlogPost, Product } from "@/lib/types";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
@@ -60,7 +61,7 @@ function normalizeProduct(product: Product): Product {
   const normalizedGallery = Array.from(new Set([image, ...gallery]));
   const priceAmount = parseTryPrice(product.priceAmount, product.price);
 
-  return {
+  return applyReviewedCopy({
     ...product,
     slug: cleanSlug(product.slug),
     price: priceAmount !== undefined ? formatTryPrice(priceAmount) : product.price || "Fiyat için bilgi alın",
@@ -69,7 +70,7 @@ function normalizeProduct(product: Product): Product {
     gallery: normalizedGallery,
     seoTitle: product.seoTitle || product.name,
     seoDescription: product.seoDescription || product.description
-  };
+  });
 }
 
 function normalizeProducts(items: Product[]) {

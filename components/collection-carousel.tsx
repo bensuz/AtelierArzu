@@ -38,11 +38,11 @@ export function CollectionCarousel({ children }: { children: ReactNode }) {
     if (position !== undefined) list.scrollTo({ left: position });
   }
 
-  const buttonClass = "focus-ring inline-flex h-11 w-11 items-center justify-center rounded-full border border-ink/20 bg-shell text-ink hover:border-ink/40 hover:bg-linen aria-disabled:cursor-default aria-disabled:opacity-40 motion-safe:transition-colors";
+  const buttonClass = "focus-ring inline-flex h-11 w-11 items-center justify-center rounded-full border border-charcoal/20 bg-ivory text-charcoal hover:border-burgundy hover:text-burgundy aria-disabled:cursor-default aria-disabled:opacity-30 motion-safe:transition-colors";
 
   return (
     <div>
-      <div className="mb-3 flex justify-end gap-2">
+      <div className="mb-5 flex justify-end gap-2">
         <button type="button" className={buttonClass} aria-label="Önceki model" aria-controls={trackId} aria-disabled={edges.start} onClick={() => move(-1)}>
           <ChevronLeft aria-hidden="true" className="h-5 w-5" />
         </button>
@@ -54,7 +54,7 @@ export function CollectionCarousel({ children }: { children: ReactNode }) {
         ref={track}
         id={trackId}
         aria-label="Koleksiyon modelleri"
-        className="collection-track relative flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-4 pt-1 sm:gap-5 motion-safe:scroll-smooth"
+        className="collection-track relative flex snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain pb-4 pt-1 sm:gap-6 motion-safe:scroll-smooth"
       >
         {children}
       </ul>

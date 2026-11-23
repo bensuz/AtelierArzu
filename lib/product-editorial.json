@@ -1,0 +1,123 @@
+{
+  "_readme": "Reviewed Turkish copy layered over the Sanity product records at render time. Only spelling, diacritics and editorial descriptions are changed here; prices, dimensions, materials and delivery data always come from Studio. Each entry keeps the original description for comparison. Move the text into Studio when convenient and delete the entry.",
+  "flora": {
+    "original": { "description": "Renkli cicek desenli omuz cantasi" },
+    "editorial": {
+      "intro": "Flora, koyu zemin üzerine tek tek örülmüş rengârenk çiçeklerden oluşuyor. Askısı bile çiçeklerden örülü; çanta omuzdayken desen kesintisiz devam ediyor.",
+      "highlights": [
+        "Kırmızı, mavi, yeşil, turuncu, pembe ve sarı tonlarında el örgüsü çiçek motifleri",
+        "Çiçeklerden örülmüş uzun askı",
+        "Hasır iple örüldüğü için hafif ve tok duran bir gövde"
+      ],
+      "usage": "Sade bir elbise ya da keten bir takımla, kombinin tek renkli parçası Flora olsun diye tasarlandı. Yaz akşamları ve hafta sonu buluşmaları için düşünülmüş bir model."
+    }
+  },
+  "kakao": {
+    "original": { "description": "Kakao, zarif görünümü ve fonksiyonel yapısıyla günün her anına uyum sağlayan bir modeldir.\n\nDoğal malzemeler kullanılarak tamamen el işçiliğiyle hazırlanan Kakao, hem günlük kombinlerinize hem de özel anlarınıza sıcak bir dokunuş katar." },
+    "editorial": {
+      "intro": "Kakao, ajurlu örgüsünün arasından ışığı geçiren, tek renk kahverengi bir omuz çantası. Gövdesi ve uzun askısı aynı iple örüldüğü için bütün bir görünüm veriyor.",
+      "highlights": [
+        "Açık dokulu (ajurlu) hasır ip örgüsü",
+        "Gövdeyle aynı renkte uzun omuz askısı",
+        "Çıtçıt kapama"
+      ],
+      "usage": "Kahverengi tonu çoğu renkle uyum sağladığı için her gün elinizin altında duracak bir çanta. Örgüsü açık dokulu olduğundan küçük eşyalarınızı bir kese ya da cüzdan içinde taşımanızı öneririm."
+    }
+  },
+  "livia": {
+    "original": { "description": "Livia, sade tasarımı ve ince işçiliğiyle modern stilin vazgeçilmez tamamlayıcılarından biridir. Doğal dokusu ve zamansız görünümü sayesinde her mevsim kullanıma uygun olan bu özel model, günlük kombinlerden özel davetlere kadar birçok farklı stile kolayca uyum sağlar.\n\nTamamen el emeğiyle hazırlanan Livia, hafif yapısıyla gün boyu konfor sunarken geniş iç hacmi sayesinde günlük ihtiyaçlarınızı düzenli bir şekilde taşımanıza olanak tanır. Şıklığı ve işlevselliği bir araya getiren tasarımıyla uzun yıllar keyifle kullanabileceğiniz zamansız bir parçadır.\n\nHer ilmeğinde ustalık ve özen bulunan Livia, seri üretimin ötesinde, el yapımının sıcaklığını ve özgünlüğünü yansıtır." },
+    "editorial": {
+      "intro": "Livia, gri zemin üzerine pembe yelpaze motifleriyle örülen kare panellerden oluşuyor. Panellerin birleştiği çapraz çizgi, çantanın önüne sakin bir geometri katıyor.",
+      "highlights": [
+        "Gri ve pembe iki renkli motif örgüsü",
+        "Metal halkalarla gövdeye bağlanan uzun askı",
+        "Çıtçıt kapama"
+      ],
+      "usage": "Pembe ve gri birlikte yumuşak bir ikili; kot, beyaz gömlek ve bej tonlarıyla kolay eşleşiyor. Çapraz ya da omuzda, gün boyu taşımak için düşünüldü."
+    }
+  },
+  "luna": {
+    "original": { "description": "Luna, yalın tasarımı ve zarif örgü dokusuyla günlük stilinize doğal bir zarafet katmak için tasarlandı. Modern çizgileri ve el yapımı detayları sayesinde hem günlük kullanımda hem de özel anlarda şıklığınızı tamamlayan zamansız bir parçadır.\n\nTamamen el emeğiyle üretilen Luna, hafif yapısı ve kullanışlı iç hacmiyle gün boyu konfor sunar. Telefon, cüzdan, anahtar ve diğer günlük eşyalarınızı rahatça taşıyabileceğiniz fonksiyonel tasarımı, estetik görünümüyle buluşur.\n\nDoğal dokusu ve sade silueti sayesinde jeanlerden keten takımlara, yazlık elbiselerden günlük kombinlere kadar birçok farklı stile kolayca uyum sağlar. Luna, sadeliğin zarafetini sevenler için tasarlanmış özel bir modeldir." },
+    "editorial": {
+      "intro": "Luna, merkezden dışa doğru örülen yuvarlak gövdesiyle koleksiyonun en farklı formu. Kırmızı rengi ve kenarındaki kabartmalı sıra, çantayı uzaktan bile tanınır kılıyor.",
+      "highlights": [
+        "Spiral örgülü yuvarlak gövde ve kabartmalı kenar sırası",
+        "Üstten inen küçük kapak dili ve çıtçıt kapama",
+        "Gövdeyle aynı renkte uzun askı"
+      ],
+      "usage": "Küçük ve yuvarlak formu, yanınıza yalnızca telefon, kart ve anahtar alacağınız günler için. Düz renk kıyafetlerin üzerinde tek vurgu olarak düşünüldü."
+    }
+  },
+  "marina": {
+    "original": { "description": "Günlük kullanım için hafif, düzenli ve zamansız bir kroşe çanta. İnce askısı ve sade renkleriyle şehir kombinlerine sıcak bir doku ekler. " },
+    "editorial": {
+      "intro": "Marina, camel renkli gövdesi ve lacivert dalga sırasıyla denizi hatırlatan bir büzgülü çanta. Ağzındaki lacivert kordon ahşap boncuklarla bitiyor; açıldığında içi tamamen görünüyor.",
+      "highlights": [
+        "Lacivert dalga deseni ve lacivert ağız kenarı",
+        "Ahşap boncuklu büzgü kordonu",
+        "İnce, uzun hasır ip askı"
+      ],
+      "usage": "Büzgüsü kapalıyken eşyalar içeride toplu duruyor; açınca çantanın tamamına tek bakışta ulaşıyorsunuz. Plaj dönüşü akşam yemeklerinden şehirde hafta sonuna kadar düşünüldü."
+    }
+  },
+  "mila": {
+    "original": { "description": "Mila, zarif tasarımı ve özenle örülen dokusuyla günlük hayatın her anına eşlik etmek için tasarlandı. Sade ama dikkat çekici silueti, doğal görünümü ve el işçiliğiyle stilinizi zahmetsizce tamamlayan zamansız bir parçadır.\n\nTamamen el emeğiyle hazırlanan Mila, hafif yapısı sayesinde gün boyu konfor sunarken geniş iç hacmiyle günlük ihtiyaçlarınızı rahatlıkla taşımanıza olanak tanır. İşlevselliği ve estetiği bir araya getiren tasarımı, hem şehir hayatında hem de tatil kombinlerinde şık bir görünüm sunar.\n\nHer biri özenle hazırlanan Mila, seri üretimin ötesinde, el yapımının sıcaklığını ve özgün karakterini yansıtır." },
+    "editorial": {
+      "intro": "Mila, taba renginde kabartmalı sıralarla örülen, önü kapaklı bir model. Koleksiyonda askısı metal zincir olan tek çanta; bu yüzden akşam kombinlerine en yakın duran parça.",
+      "highlights": [
+        "Kabartmalı, sık dokulu hasır ip örgüsü",
+        "Öne katlanan kapak ve çıtçıt kapama",
+        "Uzun metal zincir askı"
+      ],
+      "usage": "Zincir askısıyla omuzda ya da çapraz; kapağı kapalıyken dikdörtgen formu düz duruyor. Davet ve akşam yemekleri için düşünüldü, gündüz de keten tonlarıyla iyi anlaşıyor."
+    }
+  },
+  "oliva": {
+    "original": { "description": "Oliva El Orgusu Omuz Cantasi " },
+    "editorial": {
+      "intro": "Oliva, zeytin yeşili dikdörtgen gövdesi ve iki uzun sapıyla küçük bir tote. Sapların ve yan panellerin kenarındaki pembe ve mavi sıra, sade yeşile ince bir renk çizgisi ekliyor.",
+      "highlights": [
+        "Dik duran dikdörtgen form",
+        "Pembe ve mavi kenar çizgili iki uzun sap",
+        "Yanlarda renkli şerit paneller"
+      ],
+      "usage": "Omuzda taşınacak şekilde düşünüldü; sapları kolun altına rahat sığıyor. Günlük küçük eşyalar için, yeşil tonunu kot ve beyazla kullanmak en kolayı."
+    }
+  },
+  "rosso": {
+    "original": { "description": "Rosso, enerjik rengi ve el yapımı dokusuyla stiline karakter katmak isteyenler için tasarlandı. Canlı görünümünü zarif örgü işçiliğiyle buluşturan bu özel model, sade kombinlere güçlü bir dokunuş eklerken, şıklığından ödün vermeyenler için dikkat çekici bir tamamlayıcıdır.\n\nTamamen el emeğiyle hazırlanan Rosso, hafif yapısı sayesinde gün boyu konfor sunar. Geniş iç hacmi; telefon, cüzdan, anahtar ve diğer günlük eşyalarınızı düzenli bir şekilde taşımanıza olanak tanırken, dayanıklı yapısıyla uzun süre keyifle kullanılabilir.\n\nİster günlük şehir stilinizde ister özel davetlerde kullanın; Rosso, cesur rengi ve zamansız tasarımıyla her kombine sıcak ve sofistike bir hava katar." },
+    "editorial": {
+      "intro": "Rosso, nar çiçeği kırmızısında, sapı gövdeden devam eden tek parça bir file çanta. Oval sap açıklığı ve açık dokulu örgüsü sayesinde hem hafif hem de elde taşıması kolay.",
+      "highlights": [
+        "Gövdeyle tek parça örülen kalın, kısa sap",
+        "Işığı geçiren açık dokulu (file) örgü",
+        "Çıtçıt kapama"
+      ],
+      "usage": "Elde ya da omuzda kısa taşımalar için. Örgüsü açık dokulu olduğundan içine küçük bir kese veya cüzdan koymak işleri kolaylaştırıyor. Kırmızıyı sade bir kombinin tek rengi olarak düşünün."
+    }
+  },
+  "siena": {
+    "original": { "description": "Siena cizgili hasir canta" },
+    "editorial": {
+      "intro": "Siena, ekru zemin üzerine koyu kahverengi yatay çizgilerle örülen, iki örgü saplı bir omuz çantası. Sapların dibindeki küçük örgü çiçek ve püsküller elde yapıldığını ilk bakışta söylüyor.",
+      "highlights": [
+        "Ekru ve koyu kahverengi çizgili gövde",
+        "Burgu örgülü iki kısa sap",
+        "Örgü çiçek ve püskül detayı"
+      ],
+      "usage": "Yatay formu sayesinde içindekiler yan yana duruyor. Çizgileri yaz kombinlerine klasik bir hava katıyor; hasır ipi sayesinde hafif."
+    }
+  },
+  "terra": {
+    "original": { "description": "Günlük kullanım için hafif, düzenli ve zamansız bir kroşe çanta. İnce askısı ve sade renkleriyle şehir kombinlerine sıcak bir doku ekler." },
+    "editorial": {
+      "intro": "Terra, kiremit rengindeki küçük gövdesi ve yuvarlak kapağıyla en kompakt modellerden biri. Kapaktaki açık renk kavisli çizgiler ve ucundaki püskül, çantanın tek süsü.",
+      "highlights": [
+        "Yuvarlak kapak üzerinde açık renk kavisli çizgiler",
+        "Kapak ucunda püskül ve çıtçıt kapama",
+        "Çapraz kullanım için uzun askı"
+      ],
+      "usage": "Telefon ve kartlarınızla hafif çıkmak istediğiniz günler için. Kiremit tonu bej, beyaz ve kot tonlarıyla kolay eşleşiyor."
+    }
+  }
+}

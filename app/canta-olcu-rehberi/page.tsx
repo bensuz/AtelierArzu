@@ -1,5 +1,7 @@
 import { publicPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { WhatsAppButton } from "@/components/whatsapp-button";
 
 export const metadata = publicPageMetadata({
   title: "Kroşe Çanta Ölçü Rehberi",
@@ -7,51 +9,58 @@ export const metadata = publicPageMetadata({
   path: "/canta-olcu-rehberi"
 });
 
+const checks = [
+  {
+    title: "İçine ne sığar?",
+    text: "Telefonu kılıfıyla, cüzdanı dolu hâliyle ölçün. Örgü kalınlığı ve varsa astar kullanılabilir iç alanı etkiler. Anahtarınızı da ekleyip eşyaların birlikte ne kadar yer kapladığına bakın."
+  },
+  {
+    title: "Ağız açıklığı",
+    text: "Gövdenin en geniş yeriyle çantanın girişi farklı olabilir. Sert ve uzun bir eşya taşıyacaksanız düz biçimde girişten geçebildiğini kontrol edin."
+  },
+  {
+    title: "Askı boyu",
+    text: "Rahat kullandığınız bir çantayı referans alın. Askının toplam boyu ile askının tepe noktası ve çantanın üst kenarı arasındaki düşüş farklı ölçülerdir."
+  }
+];
+
 export default function BagSizeGuidePage() {
   return (
-    <article className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
-      <header className="max-w-2xl">
-        <h1 className="font-serif text-5xl font-semibold leading-none sm:text-7xl">Kroşe çanta ölçü rehberi</h1>
-        <p className="mt-5 text-lg leading-8 text-ink/75">
-          Yanınızda en çok taşıdığınız eşyaları çıkarın. Yalnızca çantanın dış ölçülerine
-          bakmak yerine, bu eşyaların çantanın ağzından geçip geçmeyeceğini de düşünün.
-        </p>
-      </header>
-      <div className="mt-9 grid gap-4 md:grid-cols-3">
-        <section className="rounded-lg border border-ink/10 bg-linen p-6">
-          <h2 className="font-serif text-3xl font-semibold leading-tight">İçine ne sığar?</h2>
-          <p className="mt-3 leading-7 text-ink/75">
-            Telefonu kılıfıyla, cüzdanı dolu hâliyle ölçün. Astar ve örgü kalınlığı
-            kullanılabilir iç alanı etkileyebilir. Anahtarınızı da ekleyip eşyaların
-            birlikte ne kadar yer kapladığına bakın.
+    <article className="mx-auto max-w-7xl px-4 pb-20 pt-6 sm:px-6 lg:px-8 lg:pt-10">
+      <Breadcrumbs items={[{ href: "/", label: "Ana sayfa" }, { href: "/canta-olcu-rehberi", label: "Çanta ölçü rehberi" }]} />
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-20">
+        <header>
+          <p className="eyebrow">Ölçü rehberi</p>
+          <h1 className="mt-4 font-serif text-5xl leading-[0.98] text-charcoal sm:text-6xl">Kroşe çanta ölçü rehberi</h1>
+          <p className="mt-6 text-lg leading-8 text-charcoal/80">
+            Yanınızda en çok taşıdığınız eşyaları çıkarın. Yalnızca çantanın dış ölçülerine bakmak yerine, bu eşyaların çantanın ağzından geçip geçmeyeceğini de düşünün.
           </p>
-        </section>
-        <section className="rounded-lg border border-ink/10 bg-linen p-6">
-          <h2 className="font-serif text-3xl font-semibold leading-tight">Ağız açıklığı</h2>
-          <p className="mt-3 leading-7 text-ink/75">
-            Gövdenin en geniş yeriyle çantanın girişi farklı olabilir. Sert ve uzun
-            bir eşya taşıyacaksanız düz biçimde girişten geçebildiğini kontrol edin.
+          <p className="mt-4 leading-7 text-charcoal/70">
+            Ürün sayfalarındaki ölçüler çantanın dış ölçüleridir. Emin değilseniz modelin adını ve taşımak istediğiniz eşyanın ölçüsünü bana gönderin; birlikte kontrol edelim.
           </p>
-        </section>
-        <section className="rounded-lg border border-ink/10 bg-linen p-6">
-          <h2 className="font-serif text-3xl font-semibold leading-tight">Askı boyu</h2>
-          <p className="mt-3 leading-7 text-ink/75">
-            Rahat kullandığınız bir çantayı referans alın. Askının toplam boyu ile
-            askının tepe noktası ve çantanın üst kenarı arasındaki düşüş farklı ölçülerdir.
-          </p>
-        </section>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <WhatsAppButton message="Merhaba, bir modelin ölçüsü hakkında soru sormak istiyorum." label="Ölçü hakkında sorun" />
+            <Link href="/urunler" className="btn-secondary">Model ölçülerini karşılaştır</Link>
+          </div>
+        </header>
+        <ol className="divide-y divide-charcoal/10 border-y border-charcoal/10">
+          {checks.map((check, index) => (
+            <li key={check.title} className="grid gap-4 py-8 sm:grid-cols-[4rem_1fr]">
+              <span className="font-serif text-4xl italic leading-none text-burgundy/60">0{index + 1}</span>
+              <div>
+                <h2 className="font-serif text-3xl leading-tight text-charcoal">{check.title}</h2>
+                <p className="mt-3 leading-8 text-charcoal/75">{check.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
-      <p className="mt-8 max-w-2xl leading-7 text-ink/75">
-        Emin değilseniz modelin adını ve taşımak istediğiniz eşyanın ölçüsünü bize gönderin.
+      <p className="mt-16 max-w-2xl text-sm leading-6 text-charcoal/60">
+        İlgili yazı:{" "}
+        <Link href="/blog/mini-krose-cantaya-ne-sigar" className="text-link">Mini kroşe çantaya ne sığar?</Link>
+        {" · "}
+        <Link href="/sik-sorulan-sorular" className="text-link">Sık sorulan sorular</Link>
       </p>
-      <div className="mt-5 flex flex-wrap gap-5">
-        <Link href="/urunler" className="focus-ring rounded-sm font-semibold underline underline-offset-4 hover:text-[#741616]">
-          Model ölçülerini karşılaştır
-        </Link>
-        <Link href="/iletisim" className="focus-ring rounded-sm font-semibold underline underline-offset-4 hover:text-[#741616]">
-          Ölçü hakkında soru sor
-        </Link>
-      </div>
     </article>
   );
 }

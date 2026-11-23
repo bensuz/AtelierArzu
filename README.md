@@ -22,10 +22,12 @@ npm run dev
 
 Copy `.env.example` to `.env.local` and update:
 
-- `NEXT_PUBLIC_SITE_URL`
+- `NEXT_PUBLIC_SITE_URL` (production URL; on Vercel it falls back to the
+  project's production domain when empty)
 - `NEXT_PUBLIC_WHATSAPP_PHONE`
-- `NEXT_PUBLIC_SUPPORT_EMAIL`
+- `NEXT_PUBLIC_SUPPORT_EMAIL` (e-mail is hidden everywhere until set)
 - `NEXT_PUBLIC_INSTAGRAM_HANDLE`
+- `NEXT_PUBLIC_BUSINESS_CITY` (defaults to Ankara; set to `-` to hide)
 - `NEXT_PUBLIC_SANITY_PROJECT_ID`
 - `NEXT_PUBLIC_SANITY_DATASET`
 
@@ -42,6 +44,26 @@ registered electronic mail address.
 The published catalog uses product photography from Sanity. Keep the product
 itself accurate when retouching backgrounds, and record useful Turkish alt
 text on each photo in Studio.
+
+## Reviewed product copy
+
+`lib/product-editorial.json` holds reviewed Turkish copy (intro, highlights,
+usage) per product slug, together with the original Studio description for
+comparison. `lib/product-copy.ts` applies it at render time and also corrects
+values typed without Turkish characters in Studio (for example `Gunluk`,
+`Hasir Ip`, `Cit Cit`, `10 gun`). Prices, dimensions, materials, availability
+and delivery data are never changed by this layer. When the text is moved into
+Studio, delete the matching entry.
+
+`components/bag-capacity.tsx` renders "Bu çantaya neler sığar?" only when a
+product has a tested capacity note or a confirmed `fits` list; nothing is
+inferred from dimensions.
+
+## Optional brand photographs
+
+Drop `arzu-portre.(webp|jpg|png)` and `arzu-atolye.(webp|jpg|png)` into
+`public/images` to replace the portrait and workshop placeholders on the
+homepage and the About page.
 
 ## Catalog and launch checks
 

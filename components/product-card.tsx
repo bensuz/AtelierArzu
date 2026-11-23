@@ -1,40 +1,53 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CrochetLoopIcon } from "@/components/craft-icons";
 import type { Product } from "@/lib/types";
 
-export function ProductCard({ product }: { product: Product }) {
+type ProductCardProps = {
+  product: Product;
+  priority?: boolean;
+  sizes?: string;
+};
+
+const availabilityTone: Record<Product["availability"], string> = {
+  "Hazır": "text-charcoal/70",
+  "Sipariş Üzerine": "text-burgundy",
+  "Tükendi": "text-charcoal/50"
+};
+
+export function ProductCard({ product, priority = false, sizes = "(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 90vw" }: ProductCardProps) {
+  const alt = product.imageDetails?.find((image) => image?.url === product.image)?.alt || `${product.name} el örgüsü çanta`;
+  const summary = product.editorial?.intro ?? product.description;
+
   return (
-    <article className="product-card overflow-hidden rounded-lg border border-ink/10 bg-shell shadow-sm hover:shadow-soft focus-within:ring-2 focus-within:ring-olive focus-within:ring-offset-2">
-      <Link href={`/urunler/${product.slug}`} className="focus-ring block">
-        <div className="relative aspect-[4/5] overflow-hidden bg-linen">
+    <article className="product-card group">
+      <Link href={`/urunler/${product.slug}`} className="focus-ring block rounded-[0.375rem]">
+        <div className="image-frame aspect-[4/5]">
           <Image
             src={product.image}
-            alt={product.imageDetails?.find((image) => image?.url === product.image)?.alt || `${product.name} el yapımı kroşe çanta`}
+            alt={alt}
             fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            priority={priority}
+            sizes={sizes}
             className="product-card-image object-cover"
           />
-          <div className="absolute left-4 top-4 rounded-full bg-shell/92 px-3 py-1 text-xs font-semibold text-ink">
-            {product.availability}
-          </div>
+          {product.availability === "Tükendi" && (
+            <span className="absolute left-3 top-3 rounded-full bg-ivory/92 px-3 py-1 text-xs font-semibold text-charcoal">Tükendi</span>
+          )}
         </div>
-        <div className="p-5">
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <p className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-olive">
-                <CrochetLoopIcon className="h-4 w-4 text-clay" />
-                {product.category}
-              </p>
-              <h3 className="mt-2 font-serif text-2xl font-semibold text-ink">
-                {product.name}
-              </h3>
-            </div>
-            <p className="shrink-0 text-sm font-semibold text-ink">{product.price}</p>
+        <div className="pt-4">
+          <div className="flex items-baseline justify-between gap-4">
+            <h3 className="font-serif text-2xl leading-none text-charcoal sm:text-[1.75rem]">{product.name}</h3>
+            <p className="shrink-0 text-sm font-semibold tabular-nums text-charcoal">{product.price}</p>
           </div>
-          <p className="mt-3 line-clamp-2 text-sm leading-6 text-ink/66">
-            {product.description}
+          <p className="mt-1.5 flex flex-wrap items-center gap-x-2 text-xs text-charcoal/60">
+            <span>{product.category}</span>
+            <span aria-hidden="true">·</span>
+            <span className={availabilityTone[product.availability]}>{product.availability}</span>
           </p>
+          <p className="mt-2.5 line-clamp-2 text-sm leading-6 text-charcoal/70">{summary}</p>
+          <span className="mt-3 inline-block text-sm font-semibold text-burgundy underline decoration-transparent underline-offset-4 motion-safe:transition-colors group-hover:decoration-burgundy">
+            Modeli incele
+          </span>
         </div>
       </Link>
     </article>

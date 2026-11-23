@@ -1,15 +1,15 @@
 import { whatsappUrl } from "@/lib/site";
 
-export function WhatsAppButton({
-  label = "WhatsApp’tan bize yazın",
-  message
-}: {
+type WhatsAppButtonProps = {
   label?: string;
   message: string;
-}) {
+  className?: string;
+  variant?: "primary" | "light";
+};
+
+export function WhatsAppButton({ label = "WhatsApp’tan yazın", message, className = "", variant = "primary" }: WhatsAppButtonProps) {
   const href = whatsappUrl(message);
-  const className =
-    "focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-olive px-6 py-3 text-sm font-semibold text-white transition hover:bg-ink";
+  const base = variant === "light" ? "btn-light" : "btn-primary";
   const content = (
     <>
       <WhatsAppIcon className="h-4 w-4" />
@@ -18,17 +18,22 @@ export function WhatsAppButton({
   );
 
   return href ? (
-    <a href={href} className={className}>
+    <a href={href} className={`${base} ${className}`}>
       {content}
     </a>
   ) : (
-    <button type="button" disabled title="WhatsApp şu anda kullanılamıyor" className={`${className} cursor-not-allowed opacity-70`}>
+    <button
+      type="button"
+      disabled
+      title="WhatsApp numarası henüz tanımlı değil"
+      className={`${base} cursor-not-allowed opacity-60 ${className}`}
+    >
       {content}
     </button>
   );
 }
 
-function WhatsAppIcon({ className }: { className?: string }) {
+export function WhatsAppIcon({ className }: { className?: string }) {
   return (
     <svg
       aria-hidden="true"

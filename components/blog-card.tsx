@@ -5,38 +5,40 @@ import type { BlogPost } from "@/lib/types";
 type BlogCardProps = {
   post: BlogPost;
   heading?: "h2" | "h3";
+  priority?: boolean;
 };
 
-export function BlogCard({ post, heading: Heading = "h2" }: BlogCardProps) {
+export function BlogCard({ post, heading: Heading = "h2", priority = false }: BlogCardProps) {
   const titleId = `blog-card-${post.slug}`;
   const details = [post.category, post.readTime].filter(Boolean).join(" · ");
 
   return (
-    <article className="h-full">
+    <article className="group h-full">
       <Link
         href={`/blog/${post.slug}`}
         aria-labelledby={titleId}
-        className="group focus-ring flex h-full flex-col rounded-lg border border-ink/10 bg-shell hover:border-ink/40 hover:shadow-soft focus-visible:border-ink/40 motion-safe:transition-[border-color,box-shadow]"
+        className="focus-ring flex h-full flex-col rounded-[0.375rem]"
       >
-        <div className="relative aspect-[4/3] overflow-hidden rounded-t-lg bg-linen">
+        <div className="image-frame aspect-[4/3]">
           <Image
             src={post.image}
             alt={post.imageAlt ?? ""}
             fill
+            priority={priority}
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-[1.03]"
+            className="object-cover motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-[1.03]"
           />
         </div>
-        <div className="flex flex-1 flex-col p-6">
-          {details && <p className="text-sm font-medium text-[#741616]">{details}</p>}
+        <div className="flex flex-1 flex-col pt-5">
+          {details && <p className="eyebrow !tracking-[0.2em]">{details}</p>}
           <Heading
             id={titleId}
-            className="mt-3 font-serif text-3xl font-semibold leading-tight text-ink/90 group-hover:text-ink group-focus-visible:text-ink"
+            className="mt-3 font-serif text-[1.75rem] leading-[1.1] text-charcoal group-hover:text-burgundy motion-safe:transition-colors"
           >
             {post.title}
           </Heading>
-          <p className="mb-5 mt-3 text-base leading-7 text-ink/75">{post.excerpt}</p>
-          <span className="mt-auto text-sm font-semibold text-[#741616] underline decoration-transparent underline-offset-4 group-hover:text-ink group-hover:decoration-current group-focus-visible:text-ink group-focus-visible:decoration-current">
+          <p className="mt-3 line-clamp-3 text-[0.9375rem] leading-7 text-charcoal/70">{post.excerpt}</p>
+          <span className="mt-4 text-sm font-semibold text-burgundy underline decoration-transparent underline-offset-4 group-hover:decoration-burgundy motion-safe:transition-colors">
             Yazıyı oku
           </span>
         </div>

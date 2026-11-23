@@ -19,15 +19,15 @@ export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
           }))
         }}
       />
-      <nav aria-label="Sayfa yolu" className="mb-8 text-sm text-ink/70">
+      <nav aria-label="Sayfa yolu" className="mb-8 text-[0.8125rem] text-charcoal/60">
         <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
           {items.map(({ href, label }, index) => (
             <li key={href} className="flex items-baseline gap-2">
-              {index > 0 && <span aria-hidden="true">/</span>}
+              {index > 0 && <span aria-hidden="true" className="text-charcoal/30">/</span>}
               {index === items.length - 1 ? (
-                <span aria-current="page">{label}</span>
+                <span aria-current="page" className="text-charcoal/80">{label}</span>
               ) : (
-                <Link href={href} className="focus-ring rounded-sm hover:text-[#741616] hover:underline">
+                <Link href={href} className="focus-ring rounded-sm hover:text-burgundy">
                   {label}
                 </Link>
               )}

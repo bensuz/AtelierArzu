@@ -4,24 +4,35 @@
 
 :root {
   color-scheme: light;
-  background: #fffaf3;
-  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-serif: Georgia, "Times New Roman", serif;
-  --font-brand: "Cormorant Garamond Variable", Georgia, "Times New Roman", serif;
-  --site-header-height: 5.75rem;
+  background: #fdf9f2;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Cormorant Garamond Variable", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-brand: "Cormorant Garamond Variable", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --site-header-height: 4.75rem;
+  --burgundy: #741616;
+  --charcoal: #2b2523;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --site-header-height: 6rem;
+  }
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
-  background:
-    linear-gradient(180deg, rgba(248, 241, 232, 0.7), rgba(255, 250, 243, 0.9)),
-    #fffaf3;
-  color: #2d2925;
+  background: #fdf9f2;
+  color: var(--charcoal);
   text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
 }
 
 a {
@@ -34,12 +45,65 @@ img {
 }
 
 ::selection {
-  background: #b66d5d;
-  color: #fffaf3;
+  background: #741616;
+  color: #fdf9f2;
 }
 
-.focus-ring {
-  @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-olive;
+/* Headings set in Cormorant need slightly tighter leading and more weight to read well */
+.font-serif {
+  font-weight: 600;
+  letter-spacing: -0.012em;
+}
+
+@layer components {
+  .focus-ring {
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-burgundy;
+  }
+
+  .eyebrow {
+    @apply text-[0.7rem] font-semibold uppercase tracking-[0.26em] text-burgundy;
+  }
+
+  .btn {
+    @apply focus-ring inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold motion-safe:transition-colors;
+  }
+
+  .btn-primary {
+    @apply btn bg-burgundy text-ivory hover:bg-burgundy-deep;
+  }
+
+  .btn-secondary {
+    @apply btn border border-charcoal/25 bg-transparent text-charcoal hover:border-charcoal hover:bg-charcoal hover:text-ivory;
+  }
+
+  .btn-light {
+    @apply btn bg-ivory text-charcoal hover:bg-cream;
+  }
+
+  .btn-outline-light {
+    @apply btn border border-ivory/50 text-ivory hover:border-ivory hover:bg-ivory/10;
+  }
+
+  .text-link {
+    @apply focus-ring rounded-sm font-semibold text-burgundy underline decoration-burgundy/30 underline-offset-4 hover:decoration-burgundy motion-safe:transition-colors;
+  }
+
+  .thread-rule {
+    @apply relative h-px w-full bg-charcoal/10;
+  }
+
+  .thread-rule::before {
+    content: "";
+    @apply absolute -top-[3px] left-0 h-[7px] w-[7px] rounded-full border border-burgundy bg-ivory;
+  }
+
+  .thread-rule-center::before {
+    @apply left-1/2 -translate-x-1/2;
+  }
+
+  .image-frame {
+    @apply relative overflow-hidden rounded-[0.375rem] bg-cream;
+  }
 }
 
 .footer-link {
@@ -53,13 +117,112 @@ img {
 
 .footer-link:hover,
 .footer-link:focus-visible {
-  color: #fffaf3;
+  color: #fdf9f2;
   text-decoration-color: currentColor;
 }
 
 .footer-link:focus-visible {
-  outline: 2px solid #fffaf3;
+  outline: 2px solid #fdf9f2;
   outline-offset: 4px;
+}
+
+.nav-link {
+  position: relative;
+  padding-block: 0.25rem;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.nav-link[aria-current="page"]::after,
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.site-header {
+  background: rgba(253, 249, 242, 0.94);
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid rgba(116, 22, 22, 0.1);
+}
+
+/* Transparent state over the homepage hero (set by HeaderChrome) */
+html[data-header="transparent"]:not([data-menu="open"]) .site-header {
+  background: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+html[data-header="transparent"]:not([data-menu="open"]) .header-logo {
+  filter: brightness(0) invert(1);
+}
+
+html[data-header="transparent"]:not([data-menu="open"]) .nav-link {
+  color: rgba(253, 249, 242, 0.88);
+}
+
+html[data-header="transparent"]:not([data-menu="open"]) .nav-link:hover,
+html[data-header="transparent"]:not([data-menu="open"]) .nav-link[aria-current="page"] {
+  color: #fdf9f2;
+}
+
+html[data-header="transparent"]:not([data-menu="open"]) .header-cta {
+  background: #fdf9f2;
+  color: #2b2523;
+}
+
+html[data-header="transparent"]:not([data-menu="open"]) .header-cta:hover {
+  background: #f6eee2;
+}
+
+html[data-header="transparent"]:not([data-menu="open"]) .header-menu-button {
+  background: transparent;
+  border-color: rgba(253, 249, 242, 0.5);
+  color: #fdf9f2;
+}
+
+/* Full-screen mobile menu */
+.mobile-panel {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+}
+
+.mobile-panel-open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.mobile-panel-item {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.mobile-panel-open .mobile-panel-item {
+  opacity: 1;
+  transform: none;
+}
+
+html[data-menu="open"] .site-header {
+  background: #fdf9f2;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+html[data-menu="open"] .header-logo {
+  filter: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -71,12 +234,37 @@ img {
     transition: color 160ms ease, text-decoration-color 160ms ease;
   }
 
-  .product-card {
-    transition: translate 260ms ease-out, box-shadow 260ms ease-out;
+  .nav-link::after {
+    transition: transform 220ms ease;
+  }
+
+  .site-header,
+  .header-logo,
+  .nav-link,
+  .header-cta,
+  .header-menu-button {
+    transition: background-color 280ms ease, border-color 280ms ease, color 280ms ease, filter 280ms ease, backdrop-filter 280ms ease;
+  }
+
+  .mobile-panel {
+    transition: opacity 240ms ease, transform 240ms ease, visibility 0s linear 240ms;
+  }
+
+  .mobile-panel-open {
+    transition: opacity 240ms ease, transform 240ms ease, visibility 0s;
+  }
+
+  .mobile-panel-item {
+    transition: opacity 320ms ease, transform 320ms ease;
+    transition-delay: calc(60ms + var(--i, 0) * 35ms);
+  }
+
+  .mobile-panel:not(.mobile-panel-open) .mobile-panel-item {
+    transition-delay: 0ms;
   }
 
   .product-card-image {
-    transition: scale 420ms cubic-bezier(0.2, 0.65, 0.3, 1);
+    transition: scale 600ms cubic-bezier(0.2, 0.65, 0.3, 1);
   }
 
   @supports selector(::details-content) and (interpolate-size: allow-keywords) {
@@ -95,12 +283,8 @@ img {
   }
 
   @media (hover: hover) and (pointer: fine) {
-    .product-card:hover {
-      translate: 0 -4px;
-    }
-
     .product-card:hover .product-card-image {
-      scale: 1.035;
+      scale: 1.04;
     }
   }
 
@@ -139,5 +323,74 @@ img {
 
 .collection-track {
   scrollbar-width: thin;
-  scrollbar-color: #bca79b transparent;
+  scrollbar-color: #a8978a transparent;
+}
+
+/* Product gallery thumbnails */
+.thumb-strip {
+  scrollbar-width: none;
+}
+
+.thumb-strip::-webkit-scrollbar {
+  display: none;
+}
+
+/* Long-form article typography */
+.article-body {
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  color: rgba(43, 37, 35, 0.82);
+}
+
+.article-body > * + * {
+  margin-top: 1.25em;
+}
+
+.article-body h2 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  color: var(--charcoal);
+  margin-top: 2.2em;
+}
+
+.article-body h3 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-top: 1.8em;
+}
+
+.article-body a {
+  color: var(--burgundy);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.article-body figure {
+  margin: 2em 0;
+}
+
+.article-body figcaption {
+  margin-top: 0.6em;
+  font-size: 0.875rem;
+  color: rgba(43, 37, 35, 0.6);
+}
+
+.article-body ul,
+.article-body ol {
+  padding-left: 1.25em;
+}
+
+.article-body li + li {
+  margin-top: 0.4em;
+}
+
+/* Sticky mobile CTA keeps clear of the footer by sitting inside the product page only */
+.sticky-cta {
+  padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
 }
