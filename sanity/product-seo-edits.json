@@ -1,0 +1,136 @@
+[
+  {
+    "slug": "flora",
+    "seo": {
+      "title": "Flora Renkli El Örgüsü Omuz Çantası",
+      "description": "Arzu’nun renkli çiçek motifleriyle ördüğü Flora omuz çantasının ölçülerini, askısını ve bakım bilgilerini inceleyin."
+    },
+    "imageAlt": "Renkli çiçek motifleri ve uzun askısıyla Flora örgü omuz çantası",
+    "galleryAlt": []
+  },
+  {
+    "slug": "kakao",
+    "seo": {
+      "title": "Kakao Kahverengi El Örgüsü Omuz Çantası",
+      "description": "Kahverengi örgü ve açık renk uzun askısıyla Kakao omuz çantası. Modelin ölçülerine, kapamasına ve bakım bilgilerine göz atın."
+    },
+    "imageAlt": "Açık renk uzun askılı, kahverengi ve ajurlu Kakao örgü omuz çantası",
+    "galleryAlt": []
+  },
+  {
+    "slug": "livia",
+    "seo": {
+      "title": "Livia Pembe ve Gri El Örgüsü Omuz Çantası",
+      "description": "Pembe ve gri örgü dokusuyla Livia omuz çantası. Askı, ölçü ve bakım ayrıntılarını ürün sayfasında inceleyin."
+    },
+    "imageAlt": "Pembe ve gri örgü gövdeli, açık renk askılı Livia omuz çantası",
+    "galleryAlt": []
+  },
+  {
+    "slug": "luna",
+    "seo": {
+      "title": "Luna Kırmızı Yuvarlak Örgü Omuz Çantası",
+      "description": "Yuvarlak örgü gövdesi ve kırmızı askısıyla Luna. Ölçülerine, kapamasına ve bakım notuna göz atın."
+    },
+    "imageAlt": "Yuvarlak kırmızı örgü gövdeli ve uzun askılı Luna çanta",
+    "galleryAlt": []
+  },
+  {
+    "slug": "marina",
+    "seo": {
+      "title": "Marina Lacivert Detaylı Örgü Omuz Çantası",
+      "description": "Lacivert büzgü ve dalga detaylarıyla Marina omuz çantası. Çantanın içini, askısını ve örgü ayrıntılarını galeride görün."
+    },
+    "imageAlt": "Lacivert üst kenarlı, büzgülü Marina örgü omuz çantasının önden görünümü",
+    "galleryAlt": [
+      {
+        "_key": "a48752f86d71",
+        "alt": "Büzgüsü açılmış Marina çantanın içi ve lacivert ağız kenarı"
+      },
+      {
+        "_key": "2463214359ff",
+        "alt": "Uzun askısından asılmış Marina çantanın ön yüzü"
+      },
+      {
+        "_key": "4d22b2c87eb1",
+        "alt": "Marina çantanın farklı açıdan görünümü ve yanında duran uzun askısı"
+      },
+      {
+        "_key": "23d6ccfaf7cb",
+        "alt": "Marina çantanın lacivert büzgü kordonu ve dalgalı örgü deseninin yakın planı"
+      },
+      {
+        "_key": "b39cbce9fb5f",
+        "alt": "Marina çantanın üstten çapraz görünümü ve gövdesinin yanında duran askısı"
+      }
+    ]
+  },
+  {
+    "slug": "mila",
+    "seo": {
+      "title": "Mila Taba Renk El Örgüsü Çanta",
+      "description": "Taba renkli Mila el örgüsü çantanın dokusuna, ölçülerine, kapamasına ve bakım bilgilerine göz atın."
+    },
+    "imageAlt": "Taba renkli Mila çantanın önden görünümü ve örgü kapak detayı",
+    "galleryAlt": []
+  },
+  {
+    "slug": "oliva",
+    "seo": {
+      "title": "Oliva Yeşil El Örgüsü Mini Tote Çanta",
+      "description": "Yeşil gövdesi ve renkli yan detaylarıyla Oliva mini tote. Ön, yan ve omuzda kullanım görsellerini inceleyin."
+    },
+    "imageAlt": "Yeşil dikdörtgen gövdesi ve iki uzun sapıyla Oliva mini tote",
+    "galleryAlt": [
+      {
+        "_key": "0e5cd6deb085",
+        "alt": "Oliva mini tote çantanın yandan görünümü ve renkli şeritleri"
+      },
+      {
+        "_key": "20de47f0249b",
+        "alt": "Oliva mini tote çantanın omuzda önden görünümü"
+      },
+      {
+        "_key": "d91c88344239",
+        "alt": "Oliva mini tote omuzdayken çantanın renkli yan paneli"
+      }
+    ]
+  },
+  {
+    "slug": "rosso",
+    "seo": {
+      "title": "Rosso Kırmızı El Örgüsü Çanta",
+      "description": "Kırmızı örgü gövdesi ve geniş sap açıklığıyla Rosso. Çantanın ön yüzünü, iç hacmini ve bakım bilgilerini inceleyin."
+    },
+    "imageAlt": "Kırmızı Rosso örgü çantanın önden görünümü ve oval sap açıklığı",
+    "galleryAlt": [
+      {
+        "_key": "27cae5415430",
+        "alt": "Rosso çantanın üstten görünümü ve kırmızı örgü iç yüzeyi"
+      }
+    ]
+  },
+  {
+    "slug": "siena",
+    "seo": {
+      "title": "Siena Çizgili El Örgüsü Omuz Çantası",
+      "description": "Açık renk örgü üzerine koyu çizgileri ve çift askısıyla Siena. Çantanın gövde ve iç detaylarını inceleyin."
+    },
+    "imageAlt": "Açık renk üzerine koyu çizgili, iki uzun saplı Siena örgü çanta",
+    "galleryAlt": [
+      {
+        "_key": "f95bdd329fa0",
+        "alt": "Siena çantanın üstten görünümü, çizgili iç duvarı ve içinde duran telefon"
+      }
+    ]
+  },
+  {
+    "slug": "terra",
+    "seo": {
+      "title": "Terra Turuncu El Örgüsü Mini Tote Çanta",
+      "description": "Turuncu örgü ve açık renk çizgileriyle Terra mini tote. Modelin ölçülerine, askısına ve bakım bilgilerine göz atın."
+    },
+    "imageAlt": "Turuncu gövdeli, uzun askılı ve açık renk kapak çizgili Terra örgü çanta",
+    "galleryAlt": []
+  }
+]

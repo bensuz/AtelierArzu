@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
+import { publicPageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { ProductCard } from "@/components/product-card";
 import { SectionHeading } from "@/components/section-heading";
 import { getProducts } from "@/lib/sanity";
 
-export const metadata: Metadata = {
+export const metadata = publicPageMetadata({
   title: "Ürünler",
   description:
-    "Atelier Arzu el yapımı kroşe çanta koleksiyonu: omuz çantaları, mini tote modeller ve sipariş üzerine hazırlanan tasarımlar.",
-  alternates: { canonical: "/urunler" }
-};
+    "Arzu’dan el yapımı kroşe çanta koleksiyonu: omuz çantaları, mini tote modeller ve sipariş üzerine hazırlanan tasarımlar.",
+  path: "/urunler"
+});
 
 export default async function ProductsPage({
   searchParams
@@ -32,9 +32,10 @@ export default async function ProductsPage({
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <SectionHeading
+        as="h1"
         eyebrow="Koleksiyon"
         title="El yapımı kroşe çantalar"
-        description="Üretim adetleri sınırlıdır. Renk ve küçük ölçü uyarlamaları için WhatsApp üzerinden yazabilirsiniz."
+        description="Arzu’nun tasarlayıp elde ördüğü küçük koleksiyonlar. Renk ve ölçü seçenekleri için ilgilendiğiniz modelin adını bize yazabilirsiniz."
       />
       <div className="mt-10 grid gap-8 lg:grid-cols-[260px_1fr]">
         <aside className="h-fit rounded-lg border border-ink/10 bg-linen p-5">
@@ -52,7 +53,13 @@ export default async function ProductsPage({
           </Link>
         </aside>
         <div>
+          <h2 className="sr-only">Koleksiyondaki modeller</h2>
           <p className="mb-5 text-sm text-ink/62">{filtered.length} ürün gösteriliyor.</p>
+          {filtered.length === 0 && (
+            <p className="text-sm text-ink/70">
+              {products.length ? "Bu filtrelere uyan ürün bulunamadı." : "Şu anda yayında ürün bulunmuyor."}
+            </p>
+          )}
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {filtered.map((product) => (
               <ProductCard key={product.slug} product={product} />

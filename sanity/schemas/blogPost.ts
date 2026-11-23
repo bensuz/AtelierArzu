@@ -22,7 +22,7 @@ export const blogPost = defineType({
     }),
     defineField({ name: "excerpt", title: "Özet", type: "text", rows: 3, validation: (rule) => rule.required().min(20).max(220) }),
     defineField({ name: "publishedAt", title: "Yayın tarihi", type: "date", validation: (rule) => rule.required() }),
-    defineField({ name: "author", title: "Yazar", type: "string", initialValue: "Atelier Arzu", validation: (rule) => rule.required() }),
+    defineField({ name: "author", title: "Yazar", type: "string", initialValue: "Arzu", validation: (rule) => rule.required() }),
     defineField({
       name: "image",
       title: "Kapak görseli",
@@ -43,7 +43,17 @@ export const blogPost = defineType({
       name: "body",
       title: "İçerik",
       type: "array",
-      of: [{ type: "block" }],
+      of: [
+        { type: "block" },
+        {
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            defineField({ name: "alt", title: "Fotoğrafta ne görünüyor?", type: "string", validation: (rule) => rule.required().max(140) }),
+            defineField({ name: "caption", title: "Fotoğraf notu", type: "string" })
+          ]
+        }
+      ],
       validation: (rule) => rule.required()
     }),
     defineField({

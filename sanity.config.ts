@@ -5,7 +5,7 @@ import { schemaTypes } from "@/sanity/schemas";
 
 export default defineConfig({
   name: "atelier-arzu",
-  title: "Atelier Arzu",
+  title: "Arzu’dan",
   projectId: projectId || "placeholder-project-id",
   dataset,
   basePath: "/studio",

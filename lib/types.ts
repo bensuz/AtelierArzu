@@ -4,6 +4,7 @@ export type Product = {
   category: string;
   collection: string;
   price: string;
+  priceAmount?: number;
   availability: "Hazır" | "Sipariş Üzerine" | "Tükendi";
   materials: string[];
   dimensions: string;
@@ -13,8 +14,13 @@ export type Product = {
   care: string;
   makingTime: string;
   description: string;
+  capacity?: string;
+  designNote?: string;
+  shippingEstimate?: string;
   image: string;
   gallery: string[];
+  imageDetails?: ({ url: string | null; alt?: string | null } | null)[];
+  updatedAt?: string;
   featured: boolean;
   seoTitle: string;
   seoDescription: string;
@@ -26,8 +32,10 @@ export type BlogPost = {
   category: string;
   excerpt: string;
   publishedAt: string;
+  updatedAt?: string;
   author: string;
   image: string;
+  imageAlt?: string;
   readTime: string;
   body: unknown[];
   faq: { question: string; answer: string }[];

@@ -1,22 +1,30 @@
-import { siteConfig } from "@/lib/site";
+import { whatsappUrl } from "@/lib/site";
 
 export function WhatsAppButton({
-  label = "WhatsApp ile bilgi al",
+  label = "WhatsApp’tan bize yazın",
   message
 }: {
   label?: string;
   message: string;
 }) {
-  const href = `https://wa.me/${siteConfig.phone}?text=${encodeURIComponent(message)}`;
-
-  return (
-    <a
-      href={href}
-      className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-olive px-6 py-3 text-sm font-semibold text-white transition hover:bg-ink"
-    >
+  const href = whatsappUrl(message);
+  const className =
+    "focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-olive px-6 py-3 text-sm font-semibold text-white transition hover:bg-ink";
+  const content = (
+    <>
       <WhatsAppIcon className="h-4 w-4" />
       {label}
+    </>
+  );
+
+  return href ? (
+    <a href={href} className={className}>
+      {content}
     </a>
+  ) : (
+    <button type="button" disabled title="WhatsApp şu anda kullanılamıyor" className={`${className} cursor-not-allowed opacity-70`}>
+      {content}
+    </button>
   );
 }
 

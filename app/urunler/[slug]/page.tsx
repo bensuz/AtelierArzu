@@ -2,12 +2,20 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { JsonLd } from "@/components/json-ld";
 import { SectionHeading } from "@/components/section-heading";
 import { WhatsAppButton } from "@/components/whatsapp-button";
-import { getProduct, getProducts } from "@/lib/sanity";
+import { publicPageMetadata } from "@/lib/metadata";
+import { getBlogPosts, getProduct, getProducts } from "@/lib/sanity";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 import type { Product } from "@/lib/types";
+
+const offerAvailability = {
+  "Hazır": "https://schema.org/InStock",
+  "Sipariş Üzerine": "https://schema.org/MadeToOrder",
+  "Tükendi": "https://schema.org/OutOfStock"
+};
 
 export async function generateStaticParams() {
   const products = await getProducts();
@@ -23,17 +31,15 @@ export async function generateMetadata({
   const product = await getProduct(slug);
   if (!product) return {};
 
-  return {
+  return publicPageMetadata({
     title: product.seoTitle,
     description: product.seoDescription,
-    alternates: { canonical: `/urunler/${product.slug}` },
-    openGraph: {
-      title: product.seoTitle,
-      description: product.seoDescription,
-      images: [{ url: product.image, alt: `${product.name} kroşe çanta` }],
-      type: "website"
+    path: `/urunler/${product.slug}`,
+    image: {
+      url: product.image,
+      alt: product.imageDetails?.find((image) => image?.url === product.image)?.alt || `${product.name} el yapımı kroşe çanta`
     }
-  };
+  });
 }
 
 export default async function ProductDetailPage({
@@ -43,14 +49,15 @@ export default async function ProductDetailPage({
 }) {
   const { slug } = await params;
   const product = await getProduct(slug);
-  const products = await getProducts();
   if (!product) notFound();
+  const [products, posts] = await Promise.all([getProducts(), getBlogPosts()]);
   const gallery = product.gallery?.length ? product.gallery : [product.image];
 
   const related = products
-    .filter((item) => item.slug !== product.slug && item.category === product.category)
-    .concat(products.filter((item) => item.slug !== product.slug))
+    .filter((item) => item.slug !== product.slug)
+    .sort((a, b) => Number(b.category === product.category) - Number(a.category === product.category))
     .slice(0, 2);
+  const guides = posts.filter((post) => post.relatedProducts?.includes(product.slug));
 
   return (
     <>
@@ -63,26 +70,21 @@ export default async function ProductDetailPage({
           description: product.description,
           brand: { "@type": "Brand", name: siteConfig.name },
           material: product.materials.join(", "),
-          offers: {
+          offers: product.priceAmount === undefined ? undefined : {
             "@type": "Offer",
             priceCurrency: "TRY",
-            price: product.price.replace(/[^0-9]/g, ""),
-            availability:
-              product.availability === "Tükendi"
-                ? "https://schema.org/OutOfStock"
-                : "https://schema.org/InStock",
+            price: product.priceAmount,
+            availability: offerAvailability[product.availability],
             url: absoluteUrl(`/urunler/${product.slug}`)
           }
         }}
       />
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <nav aria-label="Sayfa yolu" className="mb-8 text-sm text-ink/58">
-          <Link href="/" className="hover:text-ink">Ana sayfa</Link>
-          <span aria-hidden="true"> / </span>
-          <Link href="/urunler" className="hover:text-ink">Ürünler</Link>
-          <span aria-hidden="true"> / </span>
-          <span>{product.name}</span>
-        </nav>
+        <Breadcrumbs items={[
+          { href: "/", label: "Ana sayfa" },
+          { href: "/urunler", label: "Ürünler" },
+          { href: `/urunler/${product.slug}`, label: product.name }
+        ]} />
         <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="grid gap-4 sm:grid-cols-2">
             {gallery.map((image, index) => (
@@ -92,7 +94,7 @@ export default async function ProductDetailPage({
               >
                 <Image
                   src={image}
-                  alt={`${product.name} placeholder görsel ${index + 1}`}
+                  alt={product.imageDetails?.find((detail) => detail?.url === image)?.alt || (index === 0 ? `${product.name} el yapımı kroşe çanta` : "")}
                   fill
                   priority={index === 0}
                   sizes={index === 0 ? "(min-width: 1024px) 55vw, 100vw" : "(min-width: 1024px) 27vw, 50vw"}
@@ -124,28 +126,59 @@ export default async function ProductDetailPage({
               {[
                 ["Malzeme", product.materials.join(", ")],
                 ["Ölçü", product.dimensions],
+                ["İçine ne sığar?", product.capacity],
                 ["Renkler", product.colors.join(", ")],
                 ["Askı", product.strap],
                 ["Kapama", product.closure],
-                ["Bakım", product.care]
-              ].map(([label, value]) => (
+                ["Bakım", product.care],
+                ["Tahmini kargoya veriliş", product.shippingEstimate]
+              ].filter(([, value]) => Boolean(value?.trim())).map(([label, value]) => (
                 <div key={label} className="grid gap-1 sm:grid-cols-[120px_1fr]">
                   <dt className="text-sm font-semibold text-ink">{label}</dt>
                   <dd className="text-sm leading-6 text-ink/68">{value}</dd>
                 </div>
               ))}
             </dl>
+            <Link href="/canta-olcu-rehberi" className="focus-ring mt-3 inline-block rounded-sm text-sm font-semibold underline underline-offset-4 hover:text-[#741616]">
+              Çanta ölçü rehberi
+            </Link>
+            {product.designNote && (
+              <section className="mt-6 rounded-lg bg-linen p-5">
+                <h2 className="font-serif text-2xl font-semibold">Arzu’dan tasarım notu</h2>
+                <p className="mt-2 whitespace-pre-line text-base leading-7 text-ink/75">{product.designNote}</p>
+              </section>
+            )}
             <div className="mt-8">
               <WhatsAppButton
-                message={`Merhaba Atelier Arzu, ${product.name} hakkında bilgi almak istiyorum.`}
+                message={`Merhaba, ${product.name} hakkında bilgi almak istiyorum.`}
               />
             </div>
             <p className="mt-4 text-xs leading-5 text-ink/52">
-              Görseller geçici ürün temsilleridir. Gerçek ürün fotoğrafları eklendiğinde
-              bu galeri 5-8 açıyla güncellenecektir.
+              {siteConfig.phone && "WhatsApp’ta bu modelin adını içeren hazır bir mesaj açılır. "}
+              Kargo ücreti, teslimat tahmini ve toplam tutar sipariş onayından önce paylaşılır.
             </p>
+            <Link href="/siparis-rehberi" className="focus-ring mt-2 inline-block rounded-sm text-sm font-semibold underline underline-offset-4 hover:text-[#741616]">
+              Sipariş nasıl verilir?
+            </Link>
+            {gallery.includes("/images/atelier-hero.png") && (
+              <p className="mt-2 text-xs leading-5 text-ink/65">Genel kapak görseli kullanılıyor.</p>
+            )}
           </div>
         </div>
+        {guides.length > 0 && (
+          <section className="mt-16 border-t border-ink/10 pt-10">
+            <h2 className="font-serif text-4xl font-semibold">Bu modelle ilgili atölye notları</h2>
+            <ul className="mt-5 space-y-3">
+              {guides.map((post) => (
+                <li key={post.slug}>
+                  <Link href={`/blog/${post.slug}`} className="focus-ring font-semibold underline underline-offset-4 hover:text-[#741616]">
+                    {post.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
         {related.length ? (
           <section className="mt-16 border-t border-ink/10 pt-10">
             <SectionHeading

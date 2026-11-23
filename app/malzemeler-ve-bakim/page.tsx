@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
+import { publicPageMetadata } from "@/lib/metadata";
 import { CheckCircle2 } from "lucide-react";
 import { YarnBallIcon } from "@/components/craft-icons";
 import { SectionHeading } from "@/components/section-heading";
 import { materials } from "@/lib/data";
 
-export const metadata: Metadata = {
+export const metadata = publicPageMetadata({
   title: "Malzemeler ve Bakım",
   description:
-    "Atelier Arzu kroşe çantalarında kullanılan pamuk iplik, deri, pirinç ve astar detayları ile bakım önerileri.",
-  alternates: { canonical: "/malzemeler-ve-bakim" }
-};
+    "Arzu’dan kroşe çantalarında kullanılan pamuk iplik, deri, pirinç ve astar detayları ile bakım önerileri.",
+  path: "/malzemeler-ve-bakim"
+});
 
 export default function MaterialsPage() {
   const careSteps = [
@@ -22,6 +22,7 @@ export default function MaterialsPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <SectionHeading
+        as="h1"
         eyebrow="Malzemeler ve bakım"
         title="Dokusu güzel, kullanımı rahat ve bakımı sade."
         description="Her malzeme çantanın hem görünümünü hem de günlük kullanımını etkiler. Bu yüzden seçimi yalnızca renk üzerinden değil, dayanıklılık ve his üzerinden de yapıyoruz."

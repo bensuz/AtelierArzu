@@ -1,4 +1,4 @@
-import type { BlogPost, Material, Product, TeamMember } from "@/lib/types";
+import type { Material, Product } from "@/lib/types";
 
 const hero = "/images/atelier-hero.png";
 const ege = "/images/ege-omuz-cantasi.png";
@@ -97,107 +97,11 @@ export const materials: Material[] = [
   }
 ];
 
-export const team: TeamMember[] = [
-  {
-    name: "Arzu",
-    role: "Kurucu ve Tasarımcı",
-    bio: "Her modelin ölçüsünü, ip seçimini ve son dokunuşlarını elde kontrol eder. Amacı, özel hissettiren ama günlük hayata kolayca giren çantalar üretmek."
-  },
-  {
-    name: "Atölye Ekibi",
-    role: "Üretim ve Kalite Kontrol",
-    bio: "Siparişlerin örüm sürecini, astar ve aksesuar kontrollerini takip eder. Her çanta gönderimden önce form, dikiş ve kullanım rahatlığı açısından incelenir."
-  }
-];
-
-export const blogPosts: BlogPost[] = [
-  {
-    title: "Kroşe Çanta Nasıl Kombinlenir?",
-    slug: "krose-canta-nasil-kombinlenir",
-    category: "Stil",
-    excerpt:
-      "Keten elbiselerden şehirli takımlara kadar kroşe çantayı modern ve sade kombinlere taşımanın yolları.",
-    publishedAt: "2026-06-10",
-    author: "Atelier Arzu",
-    image: hero,
-    readTime: "4 dk",
-    body: [
-      "Kroşe çantalar yalnızca plaj stiline ait değil. Doğru renk, form ve aksesuar seçimiyle şehirde de sıcak ve özenli bir görünüm verir.",
-      "Kum, ekru ve zeytin tonları gardıroptaki beyaz gömlek, keten pantolon, denim ve sade elbiselerle kolay eşleşir. Daha dikkat çekici bir görünüm için gül kurusu gibi yumuşak renkleri tek vurgu parçası olarak kullanabilirsiniz.",
-      "Günlük kullanımda omuz askılı modeller daha pratik olurken, mini tote formları akşamüstü buluşmaları ve yaz davetlerinde daha zarif durur."
-    ],
-    faq: [
-      {
-        question: "Kroşe çanta kışın kullanılır mı?",
-        answer:
-          "Evet. Özellikle deri detaylı ve tok formlu modeller triko, kaşe ve denimle dengeli bir dokusal kontrast oluşturur."
-      }
-    ],
-    relatedProducts: ["ege-omuz-cantasi", "arzu-mini-tote"],
-    seoTitle: "Kroşe Çanta Nasıl Kombinlenir?",
-    seoDescription:
-      "Kroşe çantaları günlük, yazlık ve şehirli kombinlerde kullanmak için sade stil önerileri."
-  },
-  {
-    title: "El Yapımı Kroşe Çanta Bakımı",
-    slug: "el-yapimi-krose-canta-bakimi",
-    category: "Bakım",
-    excerpt:
-      "Pamuk iplikli kroşe çantaların formunu, rengini ve dokusunu uzun süre korumak için temel bakım rehberi.",
-    publishedAt: "2026-06-18",
-    author: "Atelier Arzu",
-    image: ege,
-    readTime: "3 dk",
-    body: [
-      "El yapımı kroşe çantalar nazik bakım ister. Çantayı makinede yıkamak yerine lekeli alanı nemli ve açık renkli bir bezle hafifçe silmek en güvenli yöntemdir.",
-      "Kuruturken doğrudan güneş altında bırakmayın. Düz bir zeminde, çantanın içine temiz kağıt yerleştirerek formunu destekleyebilirsiniz.",
-      "Saklama sırasında ağır eşyalar altında kalmaması ve askısından uzun süre asılı durmaması çantanın formunu korur."
-    ],
-    faq: [
-      {
-        question: "Kroşe çanta makinede yıkanır mı?",
-        answer:
-          "Önerilmez. Makine yıkaması form kaybına ve aksesuar hasarına neden olabilir."
-      }
-    ],
-    relatedProducts: ["ege-omuz-cantasi"],
-    seoTitle: "El Yapımı Kroşe Çanta Bakımı",
-    seoDescription:
-      "Pamuk iplikli kroşe çantalar için temizlik, kurutma ve saklama önerileri."
-  },
-  {
-    title: "Kroşe Çanta Alırken Nelere Bakmalı?",
-    slug: "krose-canta-alirken-nelere-bakmali",
-    category: "Rehber",
-    excerpt:
-      "Malzeme, ölçü, astar ve askı detaylarıyla doğru el yapımı çanta seçimi.",
-    publishedAt: "2026-07-01",
-    author: "Atelier Arzu",
-    image: mini,
-    readTime: "5 dk",
-    body: [
-      "Kroşe çanta seçerken ilk bakılması gereken konu kullanım amacı. Günlük kullanım için omuz askısı, tok taban ve güvenli kapama daha işlevseldir.",
-      "Malzeme seçimi de çantanın görünümünü belirler. Pamuk makrome ipi daha belirgin ve tok bir örgü dokusu verir; ince pamuk iplikler ise daha yumuşak ve zarif durur.",
-      "Astar, kapama ve askı bağlantıları küçük ayrıntılar gibi görünse de çantanın günlük kullanım rahatlığını doğrudan etkiler."
-    ],
-    faq: [
-      {
-        question: "Sipariş üzerine çanta ne kadar sürede hazırlanır?",
-        answer:
-          "Modele göre değişmekle birlikte başlangıç koleksiyonunda ortalama 5-8 iş günü planlanır."
-      }
-    ],
-    relatedProducts: ["zeytin-pazar-cantasi", "arzu-mini-tote"],
-    seoTitle: "Kroşe Çanta Alırken Nelere Bakmalı?",
-    seoDescription:
-      "El yapımı kroşe çanta seçerken malzeme, ölçü, astar ve askı detayları için satın alma rehberi."
-  }
-];
+export const maker = {
+  name: "Arzu",
+  bio: "Bir çantaya başlarken önce onu gün içinde nasıl kullanacağınızı düşünüyorum. Sonra ipliği, ölçüyü ve askının omuzda nasıl duracağını seçiyorum. Her modeli kendim örüyor, bitirdiğimde astarından son dikişine kadar tek tek kontrol ediyorum."
+};
 
 export function getProductBySlug(slug: string) {
   return products.find((product) => product.slug === slug);
-}
-
-export function getPostBySlug(slug: string) {
-  return blogPosts.find((post) => post.slug === slug);
 }

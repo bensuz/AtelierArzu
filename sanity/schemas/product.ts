@@ -21,7 +21,19 @@ export const product = defineType({
       validation: (rule) => rule.required()
     }),
     defineField({ name: "collection", title: "Koleksiyon", type: "string", validation: (rule) => rule.required() }),
-    defineField({ name: "price", title: "Fiyat metni", type: "string", validation: (rule) => rule.required() }),
+    defineField({
+      name: "priceAmount",
+      title: "Kesin satış fiyatı (TL)",
+      type: "number",
+      description: "Tek bir satış fiyatı varsa girin. Değişken fiyat veya teklif için boş bırakılabilir.",
+      validation: (rule) => rule.greaterThan(0).precision(2)
+    }),
+    defineField({
+      name: "price",
+      title: "Fiyat bilgisi",
+      type: "string",
+      description: "Mevcut fiyat metni veya değişken fiyat için açıklama. Sayısal fiyat girildiğinde sitede o gösterilir."
+    }),
     defineField({
       name: "availability",
       title: "Stok durumu",
@@ -36,6 +48,9 @@ export const product = defineType({
     defineField({ name: "closure", title: "Kapama", type: "string", validation: (rule) => rule.required() }),
     defineField({ name: "care", title: "Bakım notu", type: "text", rows: 3, validation: (rule) => rule.required() }),
     defineField({ name: "makingTime", title: "Hazırlık süresi", type: "string", validation: (rule) => rule.required() }),
+    defineField({ name: "shippingEstimate", title: "Tahmini kargoya veriliş", type: "string", description: "Bu model için doğrulanmış tahmini süre." }),
+    defineField({ name: "capacity", title: "İçine ne sığar?", type: "text", rows: 3, description: "Bu modelle denediğiniz eşyaları ve varsa iç ölçüleri yazın." }),
+    defineField({ name: "designNote", title: "Arzu’dan tasarım notu", type: "text", rows: 3, description: "Malzeme, form veya askı seçiminizin nedenini kendi ağzınızdan anlatın." }),
     defineField({ name: "description", title: "Ürün açıklaması", type: "text", rows: 4, validation: (rule) => rule.required().min(20) }),
     defineField({
       name: "image",

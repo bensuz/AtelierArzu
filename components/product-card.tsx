@@ -5,15 +5,15 @@ import type { Product } from "@/lib/types";
 
 export function ProductCard({ product }: { product: Product }) {
   return (
-    <article className="group overflow-hidden rounded-lg border border-ink/10 bg-shell shadow-sm transition-shadow hover:shadow-soft">
+    <article className="product-card overflow-hidden rounded-lg border border-ink/10 bg-shell shadow-sm hover:shadow-soft focus-within:ring-2 focus-within:ring-olive focus-within:ring-offset-2">
       <Link href={`/urunler/${product.slug}`} className="focus-ring block">
         <div className="relative aspect-[4/5] overflow-hidden bg-linen">
           <Image
             src={product.image}
-            alt={`${product.name} el yapımı kroşe çanta`}
+            alt={product.imageDetails?.find((image) => image?.url === product.image)?.alt || `${product.name} el yapımı kroşe çanta`}
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover transition duration-700 group-hover:scale-105"
+            className="product-card-image object-cover"
           />
           <div className="absolute left-4 top-4 rounded-full bg-shell/92 px-3 py-1 text-xs font-semibold text-ink">
             {product.availability}

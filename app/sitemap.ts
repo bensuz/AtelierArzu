@@ -1,30 +1,26 @@
 import type { MetadataRoute } from "next";
-import { getBlogPosts, getProducts } from "@/lib/sanity";
-import { siteConfig } from "@/lib/site";
+import { getBlogPosts, getProducts, getPublishedPolicies } from "@/lib/sanity";
+import { absoluteUrl } from "@/lib/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const products = await getProducts();
-  const posts = await getBlogPosts();
-  const staticRoutes = ["", "/urunler", "/hakkimizda", "/malzemeler-ve-bakim", "/blog", "/iletisim"];
+  const [products, posts, policies] = await Promise.all([getProducts(), getBlogPosts(), getPublishedPolicies()]);
+  const staticRoutes = ["", "/urunler", "/hakkimizda", "/malzemeler-ve-bakim", "/blog", "/iletisim", "/siparis-rehberi", "/sik-sorulan-sorular", "/canta-olcu-rehberi"];
 
   return [
     ...staticRoutes.map((route) => ({
-      url: `${siteConfig.url}${route}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: route === "" ? 1 : 0.8
+      url: absoluteUrl(route)
     })),
     ...products.map((product) => ({
-      url: `${siteConfig.url}/urunler/${product.slug}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.7
+      url: absoluteUrl(`/urunler/${product.slug}`),
+      lastModified: product.updatedAt
     })),
     ...posts.map((post) => ({
-      url: `${siteConfig.url}/blog/${post.slug}`,
-      lastModified: new Date(post.publishedAt),
-      changeFrequency: "monthly" as const,
-      priority: 0.6
+      url: absoluteUrl(`/blog/${post.slug}`),
+      lastModified: post.updatedAt ?? post.publishedAt
+    })),
+    ...policies.map((policy) => ({
+      url: absoluteUrl(`/bilgiler/${policy.slug}`),
+      lastModified: policy.updatedAt
     }))
   ];
 }

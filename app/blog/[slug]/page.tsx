@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { JsonLd } from "@/components/json-ld";
 import { ProductCard } from "@/components/product-card";
+import { publicPageMetadata } from "@/lib/metadata";
 import { getBlogPost, getBlogPosts, getProducts } from "@/lib/sanity";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
@@ -12,6 +13,28 @@ export async function generateStaticParams() {
   const posts = await getBlogPosts();
   return posts.map((post) => ({ slug: post.slug }));
 }
+
+const articleComponents = {
+  types: {
+    image: ({ value }: { value: { url?: string; alt?: string; caption?: string; width?: number; height?: number } }) => {
+      if (!value.url || !value.width || !value.height) return null;
+
+      return (
+        <figure>
+          <Image
+            src={value.url}
+            alt={value.alt ?? ""}
+            width={value.width}
+            height={value.height}
+            sizes="(min-width: 896px) 848px, 100vw"
+            className="h-auto rounded-lg"
+          />
+          {value.caption && <figcaption>{value.caption}</figcaption>}
+        </figure>
+      );
+    }
+  }
+};
 
 export async function generateMetadata({
   params
@@ -22,19 +45,17 @@ export async function generateMetadata({
   const post = await getBlogPost(slug);
   if (!post) return {};
 
-  return {
+  return publicPageMetadata({
     title: post.seoTitle,
     description: post.seoDescription,
-    alternates: { canonical: `/blog/${post.slug}` },
-    openGraph: {
-      title: post.seoTitle,
-      description: post.seoDescription,
-      type: "article",
+    path: `/blog/${post.slug}`,
+    image: { url: post.image, alt: post.imageAlt || post.title },
+    article: {
       publishedTime: post.publishedAt,
-      authors: [post.author],
-      images: [{ url: post.image, alt: post.title }]
+      modifiedTime: post.updatedAt,
+      authors: [post.author]
     }
-  };
+  });
 }
 
 export default async function BlogDetailPage({
@@ -44,12 +65,15 @@ export default async function BlogDetailPage({
 }) {
   const { slug } = await params;
   const post = await getBlogPost(slug);
-  const products = await getProducts();
   if (!post) notFound();
 
-  const relatedProducts = products.filter((product) =>
-    post.relatedProducts.includes(product.slug)
-  );
+  const relatedSlugs = post.relatedProducts ?? [];
+  const relatedProducts = relatedSlugs.length
+    ? (await getProducts().catch((error: unknown) => {
+      console.error("Could not load products for blog post", error);
+      return [];
+    })).filter((product) => relatedSlugs.includes(product.slug))
+    : [];
 
   return (
     <>
@@ -61,19 +85,18 @@ export default async function BlogDetailPage({
           description: post.excerpt,
           image: absoluteUrl(post.image),
           datePublished: post.publishedAt,
+          dateModified: post.updatedAt,
           author: { "@type": "Organization", name: post.author },
           publisher: { "@type": "Organization", name: siteConfig.name },
           mainEntityOfPage: absoluteUrl(`/blog/${post.slug}`)
         }}
       />
       <article className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
-        <nav aria-label="Sayfa yolu" className="mb-8 text-sm text-ink/58">
-          <Link href="/" className="hover:text-ink">Ana sayfa</Link>
-          <span aria-hidden="true"> / </span>
-          <Link href="/blog" className="hover:text-ink">Blog</Link>
-          <span aria-hidden="true"> / </span>
-          <span>{post.title}</span>
-        </nav>
+        <Breadcrumbs items={[
+          { href: "/", label: "Ana sayfa" },
+          { href: "/blog", label: "Atölye notları" },
+          { href: `/blog/${post.slug}`, label: post.title }
+        ]} />
         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-clay">
           {post.category} · {post.readTime}
         </p>
@@ -92,7 +115,7 @@ export default async function BlogDetailPage({
         <div className="relative mt-10 aspect-[16/10] overflow-hidden rounded-lg bg-linen">
           <Image
             src={post.image}
-            alt={`${post.title} için kroşe çanta görseli`}
+            alt={post.imageAlt || `${post.title} için kroşe çanta görseli`}
             fill
             priority
             sizes="(min-width: 1024px) 900px, 100vw"
@@ -100,12 +123,12 @@ export default async function BlogDetailPage({
           />
         </div>
         <div className="prose prose-lg mt-10 max-w-none prose-headings:font-serif prose-headings:text-ink prose-p:leading-8 prose-p:text-ink/72">
-          {typeof post.body[0] === "string" ? (
+          {typeof post.body?.[0] === "string" ? (
             post.body.map((paragraph) => <p key={String(paragraph)}>{String(paragraph)}</p>)
           ) : (
-            <PortableText value={post.body as never} />
+            <PortableText value={(post.body ?? []) as never} components={articleComponents} />
           )}
-          {post.faq.length ? (
+          {post.faq?.length ? (
             <>
               <h2>Sık Sorulanlar</h2>
               {post.faq.map((item) => (
